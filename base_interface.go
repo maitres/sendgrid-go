@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/sendgrid/rest"
+	"github.com/maitres/sendgrid-rest"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 

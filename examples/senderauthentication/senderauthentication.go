@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/sendgrid/sendgrid-go"
+	"github.com/maitres/sendgrid-go"
 )
 
 // Createadomainauthentication : Create a domain authentication.

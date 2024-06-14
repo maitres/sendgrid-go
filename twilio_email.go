@@ -3,7 +3,7 @@ package sendgrid
 import (
 	"encoding/base64"
 
-	"github.com/sendgrid/rest"
+	"github.com/maitres/sendgrid-rest"
 )
 
 // TwilioEmailOptions for GetTwilioEmailRequest

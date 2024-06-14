@@ -6,13 +6,14 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"os"
 	"strconv"
 	"strings"
 	"testing"
 	"time"
 
-	"github.com/sendgrid/rest"
+	"github.com/maitres/sendgrid-rest"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 	"github.com/stretchr/testify/assert"
 )
@@ -256,8 +257,8 @@ func TestRequestAsync_rateLimit(t *testing.T) {
 func Test_test_access_settings_activity_get(t *testing.T) {
 	request := getRequest("/v3/access_settings/activity")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -428,8 +429,8 @@ func Test_test_api_keys_post(t *testing.T) {
 func Test_test_api_keys_get(t *testing.T) {
 	request := getRequest("/v3/api_keys")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -512,8 +513,8 @@ func Test_test_asm_groups_post(t *testing.T) {
 func Test_test_asm_groups_get(t *testing.T) {
 	request := getRequest("/v3/asm/groups")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["id"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("id", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -682,13 +683,13 @@ func Test_test_asm_suppressions__email__get(t *testing.T) {
 func Test_test_browsers_stats_get(t *testing.T) {
 	request := getRequest("/v3/browsers/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["aggregated_by"] = "day"
-	queryParams["browsers"] = "test_string"
-	queryParams["limit"] = "test_string"
-	queryParams["offset"] = "test_string"
-	queryParams["start_date"] = "2016-01-01"
+	queryParams := url.Values{}
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("browsers", "test_string")
+	queryParams.Add("limit", "test_string")
+	queryParams.Add("offset", "test_string")
+	queryParams.Add("start_date", "2016-01-01")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -732,9 +733,9 @@ func Test_test_campaigns_post(t *testing.T) {
 func Test_test_campaigns_get(t *testing.T) {
 	request := getRequest("/v3/campaigns")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -864,10 +865,10 @@ func Test_test_campaigns__campaign_id__schedules_test_post(t *testing.T) {
 func Test_test_categories_get(t *testing.T) {
 	request := getRequest("/v3/categories")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["category"] = "test_string"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("category", "test_string")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -880,13 +881,13 @@ func Test_test_categories_get(t *testing.T) {
 func Test_test_categories_stats_get(t *testing.T) {
 	request := getRequest("/v3/categories/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["categories"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("categories", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -899,14 +900,14 @@ func Test_test_categories_stats_get(t *testing.T) {
 func Test_test_categories_stats_sums_get(t *testing.T) {
 	request := getRequest("/v3/categories/stats/sums")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["sort_by_metric"] = "test_string"
-	queryParams["offset"] = "1"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["sort_by_direction"] = "asc"
+	queryParams := url.Values{}
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("sort_by_metric", "test_string")
+	queryParams.Add("offset", "1")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("sort_by_direction", "asc")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -919,10 +920,10 @@ func Test_test_categories_stats_sums_get(t *testing.T) {
 func Test_test_clients_stats_get(t *testing.T) {
 	request := getRequest("/v3/clients/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["aggregated_by"] = "day"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["end_date"] = "2016-04-01"
+	queryParams := url.Values{}
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("end_date", "2016-04-01")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -935,10 +936,10 @@ func Test_test_clients_stats_get(t *testing.T) {
 func Test_test_clients__client_type__stats_get(t *testing.T) {
 	request := getRequest("/v3/clients/{client_type}/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["aggregated_by"] = "day"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["end_date"] = "2016-04-01"
+	queryParams := url.Values{}
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("end_date", "2016-04-01")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1044,8 +1045,8 @@ func Test_test_contactdb_lists__list_id__patch(t *testing.T) {
 	request.Body = []byte(` {
   "name": "newlistname"
 }`)
-	queryParams := make(map[string]string)
-	queryParams["list_id"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("list_id", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1058,8 +1059,8 @@ func Test_test_contactdb_lists__list_id__patch(t *testing.T) {
 func Test_test_contactdb_lists__list_id__get(t *testing.T) {
 	request := getRequest("/v3/contactdb/lists/{list_id}")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["list_id"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("list_id", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1072,8 +1073,8 @@ func Test_test_contactdb_lists__list_id__get(t *testing.T) {
 func Test_test_contactdb_lists__list_id__delete(t *testing.T) {
 	request := getRequest("/v3/contactdb/lists/{list_id}")
 	request.Method = "DELETE"
-	queryParams := make(map[string]string)
-	queryParams["delete_contacts"] = "true"
+	queryParams := url.Values{}
+	queryParams.Add("delete_contacts", "true")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "202"
 	response, err := MakeRequest(request)
@@ -1101,10 +1102,10 @@ func Test_test_contactdb_lists__list_id__recipients_post(t *testing.T) {
 func Test_test_contactdb_lists__list_id__recipients_get(t *testing.T) {
 	request := getRequest("/v3/contactdb/lists/{list_id}/recipients")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["page"] = "1"
-	queryParams["page_size"] = "1"
-	queryParams["list_id"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("page", "1")
+	queryParams.Add("page_size", "1")
+	queryParams.Add("list_id", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1128,9 +1129,9 @@ func Test_test_contactdb_lists__list_id__recipients__recipient_id__post(t *testi
 func Test_test_contactdb_lists__list_id__recipients__recipient_id__delete(t *testing.T) {
 	request := getRequest("/v3/contactdb/lists/{list_id}/recipients/{recipient_id}")
 	request.Method = "DELETE"
-	queryParams := make(map[string]string)
-	queryParams["recipient_id"] = "1"
-	queryParams["list_id"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("recipient_id", "1")
+	queryParams.Add("list_id", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "204"
 	response, err := MakeRequest(request)
@@ -1186,9 +1187,9 @@ func Test_test_contactdb_recipients_post(t *testing.T) {
 func Test_test_contactdb_recipients_get(t *testing.T) {
 	request := getRequest("/v3/contactdb/recipients")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["page"] = "1"
-	queryParams["page_size"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("page", "1")
+	queryParams.Add("page_size", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1238,8 +1239,8 @@ func Test_test_contactdb_recipients_count_get(t *testing.T) {
 func Test_test_contactdb_recipients_search_get(t *testing.T) {
 	request := getRequest("/v3/contactdb/recipients/search")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["{field_name}"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("{field_name}", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1354,8 +1355,8 @@ func Test_test_contactdb_segments__segment_id__patch(t *testing.T) {
   "list_id": 5,
   "name": "The Millers"
 }`)
-	queryParams := make(map[string]string)
-	queryParams["segment_id"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("segment_id", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1368,8 +1369,8 @@ func Test_test_contactdb_segments__segment_id__patch(t *testing.T) {
 func Test_test_contactdb_segments__segment_id__get(t *testing.T) {
 	request := getRequest("/v3/contactdb/segments/{segment_id}")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["segment_id"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("segment_id", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1382,8 +1383,8 @@ func Test_test_contactdb_segments__segment_id__get(t *testing.T) {
 func Test_test_contactdb_segments__segment_id__delete(t *testing.T) {
 	request := getRequest("/v3/contactdb/segments/{segment_id}")
 	request.Method = "DELETE"
-	queryParams := make(map[string]string)
-	queryParams["delete_contacts"] = "true"
+	queryParams := url.Values{}
+	queryParams.Add("delete_contacts", "true")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "204"
 	response, err := MakeRequest(request)
@@ -1396,9 +1397,9 @@ func Test_test_contactdb_segments__segment_id__delete(t *testing.T) {
 func Test_test_contactdb_segments__segment_id__recipients_get(t *testing.T) {
 	request := getRequest("/v3/contactdb/segments/{segment_id}/recipients")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["page"] = "1"
-	queryParams["page_size"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("page", "1")
+	queryParams.Add("page_size", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1411,12 +1412,12 @@ func Test_test_contactdb_segments__segment_id__recipients_get(t *testing.T) {
 func Test_test_devices_stats_get(t *testing.T) {
 	request := getRequest("/v3/devices/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1429,13 +1430,13 @@ func Test_test_devices_stats_get(t *testing.T) {
 func Test_test_geo_stats_get(t *testing.T) {
 	request := getRequest("/v3/geo/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["country"] = "US"
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
-	queryParams["start_date"] = "2016-01-01"
+	queryParams := url.Values{}
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("country", "US")
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
+	queryParams.Add("start_date", "2016-01-01")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -1448,12 +1449,12 @@ func Test_test_geo_stats_get(t *testing.T) {
 func Test_test_ips_get(t *testing.T) {
 	request := getRequest("/v3/ips")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["subuser"] = "test_string"
-	queryParams["ip"] = "test_string"
-	queryParams["limit"] = "1"
-	queryParams["exclude_whitelabels"] = "true"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("subuser", "test_string")
+	queryParams.Add("ip", "test_string")
+	queryParams.Add("limit", "1")
+	queryParams.Add("exclude_whitelabels", "true")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2089,9 +2090,9 @@ func Test_test_mail_send_post(t *testing.T) {
 func Test_test_mail_settings_get(t *testing.T) {
 	request := getRequest("/v3/mail_settings")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2343,13 +2344,13 @@ func Test_test_mail_settings_template_get(t *testing.T) {
 func Test_test_mailbox_providers_stats_get(t *testing.T) {
 	request := getRequest("/v3/mailbox_providers/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["mailbox_providers"] = "test_string"
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
-	queryParams["start_date"] = "2016-01-01"
+	queryParams := url.Values{}
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("mailbox_providers", "test_string")
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
+	queryParams.Add("start_date", "2016-01-01")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2362,9 +2363,9 @@ func Test_test_mailbox_providers_stats_get(t *testing.T) {
 func Test_test_partner_settings_get(t *testing.T) {
 	request := getRequest("/v3/partner_settings")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2515,12 +2516,12 @@ func Test_test_senders__sender_id__resend_verification_post(t *testing.T) {
 func Test_test_stats_get(t *testing.T) {
 	request := getRequest("/v3/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2553,10 +2554,10 @@ func Test_test_subusers_post(t *testing.T) {
 func Test_test_subusers_get(t *testing.T) {
 	request := getRequest("/v3/subusers")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["username"] = "test_string"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("username", "test_string")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2569,8 +2570,8 @@ func Test_test_subusers_get(t *testing.T) {
 func Test_test_subusers_reputations_get(t *testing.T) {
 	request := getRequest("/v3/subusers/reputations")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["usernames"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("usernames", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2583,13 +2584,13 @@ func Test_test_subusers_reputations_get(t *testing.T) {
 func Test_test_subusers_stats_get(t *testing.T) {
 	request := getRequest("/v3/subusers/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["subusers"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("subusers", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2602,13 +2603,13 @@ func Test_test_subusers_stats_get(t *testing.T) {
 func Test_test_subusers_stats_monthly_get(t *testing.T) {
 	request := getRequest("/v3/subusers/stats/monthly")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["subuser"] = "test_string"
-	queryParams["limit"] = "1"
-	queryParams["sort_by_metric"] = "test_string"
-	queryParams["offset"] = "1"
-	queryParams["date"] = "test_string"
-	queryParams["sort_by_direction"] = "asc"
+	queryParams := url.Values{}
+	queryParams.Add("subuser", "test_string")
+	queryParams.Add("limit", "1")
+	queryParams.Add("sort_by_metric", "test_string")
+	queryParams.Add("offset", "1")
+	queryParams.Add("date", "test_string")
+	queryParams.Add("sort_by_direction", "asc")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2621,14 +2622,14 @@ func Test_test_subusers_stats_monthly_get(t *testing.T) {
 func Test_test_subusers_stats_sums_get(t *testing.T) {
 	request := getRequest("/v3/subusers/stats/sums")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "1"
-	queryParams["sort_by_metric"] = "test_string"
-	queryParams["offset"] = "1"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["sort_by_direction"] = "asc"
+	queryParams := url.Values{}
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "1")
+	queryParams.Add("sort_by_metric", "test_string")
+	queryParams.Add("offset", "1")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("sort_by_direction", "asc")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2732,12 +2733,12 @@ func Test_test_subusers__subuser_name__monitor_delete(t *testing.T) {
 func Test_test_subusers__subuser_name__stats_monthly_get(t *testing.T) {
 	request := getRequest("/v3/subusers/{subuser_name}/stats/monthly")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["date"] = "test_string"
-	queryParams["sort_by_direction"] = "asc"
-	queryParams["limit"] = "1"
-	queryParams["sort_by_metric"] = "test_string"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("date", "test_string")
+	queryParams.Add("sort_by_direction", "asc")
+	queryParams.Add("limit", "1")
+	queryParams.Add("sort_by_metric", "test_string")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2750,11 +2751,11 @@ func Test_test_subusers__subuser_name__stats_monthly_get(t *testing.T) {
 func Test_test_suppression_blocks_get(t *testing.T) {
 	request := getRequest("/v3/suppression/blocks")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["start_time"] = "1"
-	queryParams["limit"] = "1"
-	queryParams["end_time"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("start_time", "1")
+	queryParams.Add("limit", "1")
+	queryParams.Add("end_time", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2807,9 +2808,9 @@ func Test_test_suppression_blocks__email__delete(t *testing.T) {
 func Test_test_suppression_bounces_get(t *testing.T) {
 	request := getRequest("/v3/suppression/bounces")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["start_time"] = "1"
-	queryParams["end_time"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("start_time", "1")
+	queryParams.Add("end_time", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2851,8 +2852,8 @@ func Test_test_suppression_bounces__email__get(t *testing.T) {
 func Test_test_suppression_bounces__email__delete(t *testing.T) {
 	request := getRequest("/v3/suppression/bounces/{email}")
 	request.Method = "DELETE"
-	queryParams := make(map[string]string)
-	queryParams["email_address"] = "example@example.com"
+	queryParams := url.Values{}
+	queryParams.Add("email_address", "example@example.com")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "204"
 	response, err := MakeRequest(request)
@@ -2865,11 +2866,11 @@ func Test_test_suppression_bounces__email__delete(t *testing.T) {
 func Test_test_suppression_invalid_emails_get(t *testing.T) {
 	request := getRequest("/v3/suppression/invalid_emails")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["start_time"] = "1"
-	queryParams["limit"] = "1"
-	queryParams["end_time"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("start_time", "1")
+	queryParams.Add("limit", "1")
+	queryParams.Add("end_time", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2944,11 +2945,11 @@ func Test_test_suppression_spam_report__email__delete(t *testing.T) {
 func Test_test_suppression_spam_reports_get(t *testing.T) {
 	request := getRequest("/v3/suppression/spam_reports")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["start_time"] = "1"
-	queryParams["limit"] = "1"
-	queryParams["end_time"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("start_time", "1")
+	queryParams.Add("limit", "1")
+	queryParams.Add("end_time", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -2979,11 +2980,11 @@ func Test_test_suppression_spam_reports_delete(t *testing.T) {
 func Test_test_suppression_unsubscribes_get(t *testing.T) {
 	request := getRequest("/v3/suppression/unsubscribes")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["start_time"] = "1"
-	queryParams["limit"] = "1"
-	queryParams["end_time"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("start_time", "1")
+	queryParams.Add("limit", "1")
+	queryParams.Add("end_time", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3127,9 +3128,9 @@ func Test_test_templates__template_id__versions__version_id__activate_post(t *te
 func Test_test_tracking_settings_get(t *testing.T) {
 	request := getRequest("/v3/tracking_settings")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3571,12 +3572,12 @@ func Test_test_user_webhooks_parse_settings__hostname__delete(t *testing.T) {
 func Test_test_user_webhooks_parse_stats_get(t *testing.T) {
 	request := getRequest("/v3/user/webhooks/parse/stats")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["aggregated_by"] = "day"
-	queryParams["limit"] = "test_string"
-	queryParams["start_date"] = "2016-01-01"
-	queryParams["end_date"] = "2016-04-01"
-	queryParams["offset"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("aggregated_by", "day")
+	queryParams.Add("limit", "test_string")
+	queryParams.Add("start_date", "2016-01-01")
+	queryParams.Add("end_date", "2016-04-01")
+	queryParams.Add("offset", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3612,12 +3613,12 @@ func Test_test_whitelabel_domains_post(t *testing.T) {
 func Test_test_whitelabel_domains_get(t *testing.T) {
 	request := getRequest("/v3/whitelabel/domains")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["username"] = "test_string"
-	queryParams["domain"] = "test_string"
-	queryParams["exclude_subusers"] = "true"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("username", "test_string")
+	queryParams.Add("domain", "test_string")
+	queryParams.Add("exclude_subusers", "true")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3766,10 +3767,10 @@ func Test_test_whitelabel_ips_post(t *testing.T) {
 func Test_test_whitelabel_ips_get(t *testing.T) {
 	request := getRequest("/v3/whitelabel/ips")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["ip"] = "test_string"
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("ip", "test_string")
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3820,9 +3821,9 @@ func Test_test_whitelabel_links_post(t *testing.T) {
   "domain": "example.com",
   "subdomain": "mail"
 }`)
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
-	queryParams["offset"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
+	queryParams.Add("offset", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "201"
 	response, err := MakeRequest(request)
@@ -3835,8 +3836,8 @@ func Test_test_whitelabel_links_post(t *testing.T) {
 func Test_test_whitelabel_links_get(t *testing.T) {
 	request := getRequest("/v3/whitelabel/links")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["limit"] = "1"
+	queryParams := url.Values{}
+	queryParams.Add("limit", "1")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3849,8 +3850,8 @@ func Test_test_whitelabel_links_get(t *testing.T) {
 func Test_test_whitelabel_links_default_get(t *testing.T) {
 	request := getRequest("/v3/whitelabel/links/default")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["domain"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("domain", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3863,8 +3864,8 @@ func Test_test_whitelabel_links_default_get(t *testing.T) {
 func Test_test_whitelabel_links_subuser_get(t *testing.T) {
 	request := getRequest("/v3/whitelabel/links/subuser")
 	request.Method = "GET"
-	queryParams := make(map[string]string)
-	queryParams["username"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("username", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "200"
 	response, err := MakeRequest(request)
@@ -3877,8 +3878,8 @@ func Test_test_whitelabel_links_subuser_get(t *testing.T) {
 func Test_test_whitelabel_links_subuser_delete(t *testing.T) {
 	request := getRequest("/v3/whitelabel/links/subuser")
 	request.Method = "DELETE"
-	queryParams := make(map[string]string)
-	queryParams["username"] = "test_string"
+	queryParams := url.Values{}
+	queryParams.Add("username", "test_string")
 	request.QueryParams = queryParams
 	request.Headers["X-Mock"] = "204"
 	response, err := MakeRequest(request)
